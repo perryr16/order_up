@@ -17,7 +17,7 @@ RSpec.describe "US1 & US2", type: :feature do
 
   it "dish show page has ingredients" do
     visit dish_path(@dish1)
-
+    
     within("#dish-info")do
       expect(page).to have_content(@dish1.name)
       expect(page).to_not have_content(@dish2.name)

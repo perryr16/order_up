@@ -4,6 +4,7 @@
 </section>
 
 <section id="popular-ingredients">
+  <h2>3 Most Popular Ingredients in <%= @chef.name%>'s Dishes</h2>
   <ol>
     <% @chef.popular_ingredients.each do |ing_name| %>
       <li><%=ing_name %></li>

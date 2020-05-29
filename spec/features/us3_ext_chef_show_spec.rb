@@ -40,6 +40,7 @@ RSpec.describe "US3 & EXT", type: :feature do
     visit chef_ingredients_path(@chef1)
 
     within("#ing-list")do
+      expect(page).to have_content("Ingredients Used By #{@chef1.name}")
       expect(page).to have_content(@ing1.name, count: 1)
       expect(page).to have_content(@ing2.name, count: 1)
       expect(page).to have_content(@ing3.name, count: 1)
@@ -51,12 +52,15 @@ RSpec.describe "US3 & EXT", type: :feature do
   it "chef show page has three most popular ingredients" do
     visit chef_path(@chef1)
     # ing 3 used 3
-    # ing 2 used 2
+    # ing 2 used 2, tie goes to who ever show sup first...
     # ing 4 used 2
     within("#popular-ingredients")do
+      expect(page).to have_content("3 Most Popular Ingredients in #{@chef1.name}'s Dishes")
       expect(page.all('li')[0]).to have_content(@ing3.name)
       expect(page.all('li')[1]).to have_content(@ing2.name)
       expect(page.all('li')[2]).to have_content(@ing4.name)
+      expect(page).to_not have_content(@ing1.name)
+      expect(page).to_not have_content(@ing5.name)
     end
   end
   

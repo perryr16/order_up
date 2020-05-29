@@ -1,4 +1,5 @@
 <section id="ing-list">
+<h2>Ingredients Used By <%=@chef.name %></h2>
   <ul>
     <% @chef.uniq_ingredients.each do |ing_name| %>
     <li><%=ing_name %></li>
