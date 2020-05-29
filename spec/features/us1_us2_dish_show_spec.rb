@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "US1", type: :feature do
+RSpec.describe "US1 & US2", type: :feature do
   before :each do
     @chef1 = Chef.create(name: "Chef1")
     @chef2 = Chef.create(name: "Chef2")
@@ -41,7 +41,7 @@ RSpec.describe "US1", type: :feature do
     end
   end
 
-  it "us2" do
+  it "Total calories on dish show" do
      visit dish_path(@dish1)
      
      within("#total-calories")do
