@@ -23,19 +23,34 @@ RSpec.describe "US1", type: :feature do
       expect(page).to_not have_content(@dish2.name)
       expect(page).to have_content(@dish1.description)
       expect(page).to_not have_content(@dish2.description)
-      
-
+      expect(page).to have_content("Chef: #{@chef1.name}")
+      expect(page).to_not have_content("Chef: #{@chef2.name}")
     end
-    
-  end
-  
 
+    within("#ing-#{@ing1.id}")do
+      expect(page).to have_content("#{@ing1.name}: #{@ing1.calories} calories")
+      expect(page).to_not have_content("#{@ing2.name}: #{@ing2.calories} calories")
+    end
+    within("#ing-#{@ing2.id}")do
+      expect(page).to have_content("#{@ing2.name}: #{@ing2.calories} calories")
+      expect(page).to_not have_content("#{@ing3.name}: #{@ing3.calories} calories")
+    end
+    within("#ing-#{@ing3.id}")do
+      expect(page).to have_content("#{@ing3.name}: #{@ing3.calories} calories")
+      expect(page).to_not have_content("#{@ing2.name}: #{@ing2.calories} calories")
+    end
+  end
+
+  it "us2" do
+     visit dish_path(@dish1)
+     
+     within("#total-calories")do
+       expect(page).to have_content("Total Calories: #{@dish1.total_calories}")
+     end
+  end
 end
 
-
-
-# Story 1 of 3
+# Story 2 of 3
 # As a visitor
 # When I visit a dish's show page
-# I see a list of ingredients for that dish
-# and the chef's name
+# I see the total calorie count for that dish.
