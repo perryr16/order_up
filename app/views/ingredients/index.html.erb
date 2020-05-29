@@ -1,0 +1,7 @@
+<section id="ing-list">
+  <ul>
+    <% @chef.uniq_ingredients.each do |ing_name| %>
+    <li><%=ing_name %></li>
+    <%end %>
+  </ul>
+</section>

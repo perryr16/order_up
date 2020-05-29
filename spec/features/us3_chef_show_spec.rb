@@ -27,10 +27,24 @@ RSpec.describe "US3", type: :feature do
 
     within("#chef-info")do
       expect(page).to have_content(@chef1.name)
+      expect(page).to_not have_content(@chef2.name)
       click_link("Chef's Ingredients")
     end
     expect(current_path).to eq(chef_ingredients_path(@chef1))
   end
+  
+  it "chef ingredient index has uniq list of used ingredients" do
+    visit chef_ingredients_path(@chef1)
+
+    within("#ing-list")do
+      expect(page).to have_content(@ing1.name, count: 1)
+      expect(page).to have_content(@ing2.name, count: 1)
+      expect(page).to have_content(@ing3.name, count: 1)
+      expect(page).to have_content(@ing4.name, count: 1)
+      expect(page).to_not have_content(@ing5.name)
+    end
+  end
+  
   
 
 end
@@ -38,10 +52,10 @@ end
 
 # Story 3 of 3
 # As a visitor
-# When I visit a chef's show page
-# I see the name of that chef
-# And I see a link to view a list of all
+# x When I visit a chef's show page
+# x I see the name of that chef
+# x And I see a link to view a list of all
   # ingredients that this chef uses in their dishes
-# When I click on that link
-# I'm taken to a chef's ingredient index page
+# x When I click on that link
+# x I'm taken to a chef's ingredient index page
 # and I can see a unique list of names of all the ingredients that this chef uses
