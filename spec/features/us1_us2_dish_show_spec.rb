@@ -46,6 +46,7 @@ RSpec.describe "US1", type: :feature do
      
      within("#total-calories")do
        expect(page).to have_content("Total Calories: #{@dish1.total_calories}")
+       expect(page).to have_content("Total Calories: 600")
      end
   end
 end
