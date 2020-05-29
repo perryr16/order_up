@@ -51,6 +51,7 @@ RSpec.describe "US3 & EXT", type: :feature do
   
   it "chef show page has three most popular ingredients" do
     visit chef_path(@chef1)
+
     # ing 3 used 3
     # ing 2 used 2, tie goes to who ever show sup first...
     # ing 4 used 2
